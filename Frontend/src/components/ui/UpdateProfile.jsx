@@ -3,7 +3,7 @@ import React from 'react'
 function UpdateProfile() {
   return (
     <div>
-      Handsome Boy Sanjog
+      Handsome Atharva Padyal
     </div>
   )
 }
