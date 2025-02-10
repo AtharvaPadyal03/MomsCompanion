@@ -3,7 +3,7 @@ import React from 'react'
 function UpdateProfile() {
   return (
     <div>
-      Edit Profile
+      Bhagvan ka baccha....
     </div>
   )
 }
