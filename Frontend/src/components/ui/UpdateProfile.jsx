@@ -3,7 +3,7 @@ import React from 'react'
 function UpdateProfile() {
   return (
     <div>
-      Bhagvan ka baccha....
+      Handsome Boy Sanjog
     </div>
   )
 }
