@@ -14,8 +14,8 @@ const [userData, setUserData] = useState({});
       })
       .catch((err) => {
         console.error("Error fetching user data:", err);
-      });
-  }, []);
+      })
+  }, [])
 
   return (
     <div className="fixed top-4 right-4 z-50">
@@ -48,8 +48,13 @@ const [userData, setUserData] = useState({});
                     </div>
             </div>
         </div>
-        <div className="flex flex-col gap-4 justify-center items-center">
-        <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black">Logout</span>
+        <div className="flex flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col gap-4 justify-center items-center">
+          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black">Logout</span>
+          </div>
+          <div className="flex flex-col gap-4 justify-center items-center">
+          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black">Update Profile</span>
+          </div>
         </div>
       </div>
     </div>

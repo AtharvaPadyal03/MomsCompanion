@@ -9,6 +9,7 @@ import MapComponent from "../components/ui/MapComponent"
 import Login from "../components/ui/Login"
 import RegisterUser from "../components/ui/RegisterUser"
 import UserProfile from "../components/ui/UserProfile"
+import UpdateProfile from "../components/ui/UpdateProfile"
 const AppRoutes = () => {
   return (
     <Routes>
@@ -21,6 +22,7 @@ const AppRoutes = () => {
         <Route path='/login' element = {<Login/>} />
         <Route path='/RegisterUser' element={<RegisterUser/>}/>
         <Route path='/profile' element={<UserProfile/>}/>
+        <Route path='/update-profile' element={<UpdateProfile/>}/>
     </Routes>
   )
 }
