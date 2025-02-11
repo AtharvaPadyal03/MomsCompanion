@@ -186,17 +186,14 @@ const getUser = asyncHandler(async(req,res)=>{
 })
 
 const updateAccountDetailsTextBased =  asyncHandler(async(req,res)=>{
-    const {username,email} = req.body
-
-    if(!username || !email){
-        throw new ApiError('All fields are required')
-    }
+    const {weight,age,height} = req.body
     const user = await User.findByIdAndUpdate(
         req.user?._id,
         { 
             $set:{
-                username,
-                email
+                weight,
+                age,
+                height
             }
         },
         {new :true}
@@ -217,7 +214,6 @@ const updateUserAvatar = asyncHandler(async (req,res)=>{
     }
     
     await deleteFromCloudinary(avatarLocalPath)
-
     const user = await User.findByIdAndUpdate(req.user._id,
         {
             $set:{
@@ -230,20 +226,22 @@ const updateUserAvatar = asyncHandler(async (req,res)=>{
     .json(new ApiResponse(200,user,"Avatar updated successfully"))
 })
 
-const acceptAllergiesAndMedicalCondition = asyncHandler(async(req,res)=>{
-    const {allergiesArray} = req.body;
+const acceptAllergiesAndMedicalCondition = asyncHandler(async (req, res) => {
+    const { allergies } = req.body;
 
-    if (!Array.isArray(allergiesArray) || allergiesArray.length === 0) {
-        throw new ApiError(400, "Invalid input. allergiesArray must be a non-empty array.");
+    if (!allergies || typeof allergies !== 'string') {
+        throw new ApiError(400, "Invalid input. allergies must be a non-empty string.");
     }
+
     const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
-        { $addToSet: { allergies: { $each: allergiesArray } } },
-        { new: true } 
+        { $addToSet: { allergies: allergies } }, // Directly add the string
+        { new: true }
     );
 
-    return res.status(200).json(new ApiResponse(200,updatedUser,'Allergies updated'))
-})
+    return res.status(200).json(new ApiResponse(200, updatedUser, 'Allergy added'));
+});
+
 
 const acceptPromptAndGenerateRecipies = asyncHandler(async(req,res)=>{
     let prompt = 'I want curated and healthy diet plan';
@@ -275,8 +273,6 @@ const acceptPromptAndGenerateRecipies = asyncHandler(async(req,res)=>{
 const getClosestHospitals = asyncHandler(async(req,res)=>{
 
     try {
-        // const user = req.user
-        // if(!user){throw new ApiError(400,'User must be logged In')}
     
         const {address} = req.body;
         if(!address){throw new ApiError(400,"Address is required")}

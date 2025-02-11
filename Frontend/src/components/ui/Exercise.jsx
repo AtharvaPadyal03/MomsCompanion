@@ -10,7 +10,6 @@ const Exercise = () => {
         axios.get('/exercise/fetchAllExercise')
         .then(async(res)=>{
             setExercises(res.data.data)
-            console.log(res.data.data)
         })
         .catch(err=>{
             console.log(err)
@@ -18,7 +17,6 @@ const Exercise = () => {
     },[])
 
     const handleClose = () => {
-        console.log('close')
         setIsModalClosed(!isModalClosed);
     }
 

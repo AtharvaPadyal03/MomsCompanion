@@ -5,6 +5,8 @@ import axios from "../../config/axios";
 
 const ProfilePopup = ({ onClose }) => {
 const [userData, setUserData] = useState({});
+const cookies = new Cookies();
+const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -16,6 +18,12 @@ const [userData, setUserData] = useState({});
         console.error("Error fetching user data:", err);
       })
   }, [])
+
+  const logout = () => {
+    cookies.remove("accessToken", { path: "/" });
+    cookies.remove("refreshToken",{path: "/"});
+    window.location.reload();
+  };
 
   return (
     <div className="fixed top-4 right-4 z-50">
@@ -49,11 +57,13 @@ const [userData, setUserData] = useState({});
             </div>
         </div>
         <div className="flex flex-row gap-4 justify-center items-center">
+
           <div className="flex flex-col gap-4 justify-center items-center">
-          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black">Logout</span>
+          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black" onClick={e=>logout()}>Logout</span>
           </div>
+
           <div className="flex flex-col gap-4 justify-center items-center">
-          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black">Update Profile</span>
+          <span className="hover:bg-red-500 rounded-xl px-2 bg-red-300 cursor-pointer text-black" onClick={e=>navigate('/update-profile')}>Update Profile</span>
           </div>
         </div>
       </div>

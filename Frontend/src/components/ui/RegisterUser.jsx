@@ -132,7 +132,7 @@ const RegisterUser = () => {
                 <Link to="/login" className="text-blue-400 hover:underline">
                   Sign in
                 </Link>
-      </p>
+        </p>
       </form>
       
     </div>

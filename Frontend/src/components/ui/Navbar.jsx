@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import UserProfile from "./UserProfile";
+import axios from "../../config/axios";
 
 const Navbar = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const accessToken = cookies.get("accessToken");
   const [showProfile, setShowProfile] = useState(false);
-  
-  const logout = () => {
-    cookies.remove("accessToken", { path: "/" });
-    cookies.remove("refreshToken",{path: "/"});
-    window.location.reload();
-  };
+  const [avatar,setAvatar] = useState('')
+
+  useEffect(()=>{
+    axios.get('/user/getUser')
+    .then((res)=>{
+      setAvatar(res.data.data.avatar)
+    }).catch((err)=>{
+      console.log(err)
+    })
+},[])
 
 
   return (
@@ -40,7 +45,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
-            <span onClick={e=>{setShowProfile(true)}} className="hover:text-yellow-300 cursor-pointer">👩‍💻</span>
+            <span onClick={e=>{setShowProfile(true)}} className="hover:text-yellow-300 cursor-pointer">
+              <img src={avatar} alt="" className="h-[35px] w-[35px] rounded-full"/>
+            </span>
             
           </div>
         )}
