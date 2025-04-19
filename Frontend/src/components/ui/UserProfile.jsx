@@ -22,6 +22,7 @@ const navigate = useNavigate();
   const logout = () => {
     cookies.remove("accessToken", { path: "/" });
     cookies.remove("refreshToken",{path: "/"});
+    navigate('/')
     window.location.reload();
   };
 

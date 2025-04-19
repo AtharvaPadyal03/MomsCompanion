@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../config/axios';
 import Cookies from "universal-cookie";
-
+import spinner from "../../assets/loading.png"; // ✅ Import your spinner here
 
 const RegisterUser = () => {
   const cookies = new Cookies();
@@ -13,28 +13,43 @@ const RegisterUser = () => {
   const [height, setHeight] = useState('');
   const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState(null);
+  const [loading, setLoading] = useState(false); // ✅ loading state
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/user/register', { email, username, age, weight, height, password,avatar },{headers: { 'Content-Type': 'multipart/form-data' }})
+    setLoading(true); // Start loading
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("age", age);
+    formData.append("weight", weight);
+    formData.append("height", height);
+    formData.append("password", password);
+    if (avatar) formData.append("avatar", avatar);
+
+    axios.post('/user/register', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
       .then((res) => {
-        console.log(res.data)
         const token = res.data.data.accessToken;
         cookies.set("accessToken", token, { path: "/" });
         navigate('/');
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err.response?.data || err.message);
+      })
+      .finally(() => {
+        setLoading(false); // Stop loading
       });
   };
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-900">
       <form onSubmit={handleSubmit} className="bg-gray-800 px-5 py-3 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold  text-center text-white">Register</h2>
-        
+        <h2 className="text-2xl font-bold text-center text-white">Register</h2>
+
         <div className="mb-2">
           <label className="block text-gray-300">Email</label>
           <input
@@ -124,17 +139,30 @@ const RegisterUser = () => {
           />
         </div>
 
-        <button type="submit" className=" mt-3 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200">
-          Register
+        <button
+          type="submit"
+          disabled={loading}
+          className={`mt-3 w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200 ${
+            loading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
+        >
+          {loading && (
+            <img
+              src={spinner}
+              alt="Loading..."
+              className="w-5 h-5 animate-spin"
+            />
+          )}
+          {loading ? "Registering..." : "Register"}
         </button>
-        <p className="text-sm mt-3 text-gray-400 text-center ">
-                Already have an account?{" "}
-                <Link to="/login" className="text-blue-400 hover:underline">
-                  Sign in
-                </Link>
+
+        <p className="text-sm mt-3 text-gray-400 text-center">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-400 hover:underline">
+            Sign in
+          </Link>
         </p>
       </form>
-      
     </div>
   );
 };

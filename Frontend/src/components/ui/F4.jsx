@@ -7,7 +7,7 @@ const F4 = () => {
     <div className='p-10' onClick={(e)=>{
       navigate('/books')
     }}>
-      <BackgroundGradient className="rounded-[22px] max-w-lg p-6 sm:p-12 bg-transparent dark:bg-zinc-900 justify-center">
+      <div className=" bg-gray-500 rounded-[22px] max-w-lg p-6 sm:p-12 dark:bg-zinc-900 justify-center">
         <img 
           src="/books.jpg" 
           alt="image" 
@@ -17,7 +17,7 @@ const F4 = () => {
           Books
         </p>
         
-      </BackgroundGradient>
+      </div>
     </div>
   );
 };

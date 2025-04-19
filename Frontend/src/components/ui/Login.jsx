@@ -9,16 +9,24 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    if (email.trim() === "" || password.trim() === "") {
+      setError(true);
+      return;
+    }
+  
     axios
       .post("/user/login", { email, password })
       .then((res) => {
         const token = res.data.data.accessToken;
         cookies.set("accessToken", token, { path: "/" });
         navigate("/");
-        setError(false); 
+        setError(false);
+        setIsClicked(true); // ✅ Only set green if login is successful
       })
       .catch((err) => {
         setError(true);
@@ -26,6 +34,7 @@ const Login = () => {
         setPassword("");
       });
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
@@ -56,8 +65,11 @@ const Login = () => {
           </div>
           {error && <p className="text-red-500 text-sm text-center">Invalid email or password</p>}
           <button
+            onClick={() => setIsClicked(true)}
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
+            className={`w-full text-white py-2 rounded-lg font-semibold transition duration-300 ${
+              isClicked && !setError ? "bg-green-500" : "bg-blue-500 hover:bg-blue-600"
+            }`}
           >
             Login
           </button>

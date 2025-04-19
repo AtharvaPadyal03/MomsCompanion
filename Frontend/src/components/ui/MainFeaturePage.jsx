@@ -3,7 +3,7 @@ import "@fontsource/jaro"
 import Navbar from './Navbar';
 import axios from '../../config/axios';
 
-import { TypewriterEffectSmooth } from './typewriter-effect';
+
 
 const MainFeature = () => {
   const [file, setFile] = useState(null);

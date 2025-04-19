@@ -9,7 +9,7 @@ const Countdown = ({ targetDate }) => {
     if (diff <= 0) return { months: 0, days: 0 };
 
     const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const months = Math.floor(daysLeft / 30); // Approximate months
+    const months = Math.floor(daysLeft / 30);
     const days = daysLeft % 30;
 
     return { months, days };
