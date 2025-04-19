@@ -203,6 +203,22 @@ const updateAccountDetailsTextBased =  asyncHandler(async(req,res)=>{
     .json(new ApiResponse(200,user,"Account details updated successfully"))
 })
 
+
+const updateExpectedDate = asyncHandler(async(req,res)=>{
+    const {expectedDate} = req.body
+    if(!expectedDate){throw new ApiError(400,"Expected date is required")}
+    const user = await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $set:{
+                expectedDate
+            }
+        },
+        {new:true}
+    ).select('-password')
+    return res.status(200).json(new ApiResponse(200,user,"Expected date updated successfully"))
+})
+
 const updateUserAvatar = asyncHandler(async (req,res)=>{
     const avatarLocalPath = req.file?.path
     if(!avatarLocalPath){
@@ -311,6 +327,21 @@ const getClosestHospitals = asyncHandler(async(req,res)=>{
         throw new ApiError(500,error.message||"Something went wrong")
     }
 })
+
+
+const   getExpectedDate = asyncHandler(async(req,res,next)=>{
+    console.log(req.user)
+    if(!req.user){throw new ApiError(400,'User must be logged In')}
+    try {
+        const date = req.user.expectedDate
+        console.log(date)
+        if(!date){throw new ApiError(400,'Expected date is not set')}
+        return res.status(200).json(new ApiResponse(200,date,"Expected Date fetched successfully"))
+    } catch (error) {
+        throw new ApiError(500,error.message||"Something went worong")   
+    }
+})
+
 export {
     registerUser,
     loginUser,
@@ -322,5 +353,8 @@ export {
     updateAccountDetailsTextBased,
     acceptAllergiesAndMedicalCondition,
     acceptPromptAndGenerateRecipies,
-    getClosestHospitals
+    getClosestHospitals,
+    updateExpectedDate,
+    getExpectedDate
+
 };

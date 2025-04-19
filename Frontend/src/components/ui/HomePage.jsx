@@ -1,9 +1,7 @@
 
 import Countdown from '../Countdown';
-
-
 import "@fontsource/jaro"
-
+import Cookies from 'universal-cookie';
 import F1 from './F1';
 import F2 from './F2';
 import F3 from './F3';
@@ -14,7 +12,11 @@ import Navbar from './Navbar';
 
 
 const HomePage=()=> {
-  const isLoggedIn = false;
+  const cookies = new Cookies();
+  const accessToken = cookies.get("accessToken");
+  const isLoggedIn = Boolean(accessToken);
+  
+
   return (
     <div className=" min-h-screen bg-[url('/bg.avif')] bg-cover bg-center bg-no-repeat bg-slate-200 text-white ">
       <Navbar/> 

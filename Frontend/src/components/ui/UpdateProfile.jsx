@@ -11,15 +11,19 @@ const UpdateProfile = () => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [allergies, setAllergies] = useState([]);
+  const [expectedDate, setExpectedDate] = useState('');
+
 
   useEffect(()=>{
       axios.get('/user/getUser')
       .then((res)=>{
+        console.log(res)
         setAvatar(res.data.data.avatar)
         setAge(res.data.data.age)
         setWeight(res.data.data.weight)
         setHeight(res.data.data.height)
         setAllergies(res.data.data.allergies)
+        setExpectedDate(res.data.data.expectedDate.split('T')[0] || '');
       }).catch((err)=>{
         console.log(err)
       })
@@ -32,21 +36,34 @@ const UpdateProfile = () => {
       axios.patch('/user/updateAccountDetailsTextBased',{age,weight,height})
       .then((res) => {
         console.log(res.data)
+        navigate('/')
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      })
+    }
+  }
+
+    if(allergies!=''){
+      axios.patch('/user/acceptAllergiesAndMedicalCondition',{allergies})
+      .then((res) => {
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err.response.data);
       })
     }
 
-    axios.patch('/user/acceptAllergiesAndMedicalCondition',{allergies})
-    .then((res) => {
-      console.log(res.data)
-      navigate('/')
-    })
-    .catch((err) => {
-      console.log(err.response.data);
-    })
-  }
+    if(expectedDate!=''){
+      console.log(expectedDate)
+      axios.patch('/user/acceptExpectedDate',{expectedDate})
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      })
+   }
 
   const handleSumbitAvatar = (e)=>{
     e.preventDefault()
@@ -103,6 +120,18 @@ const UpdateProfile = () => {
                   <label className="block text-gray-700 font-medium">Height (cm):</label>
                   <input type="number" className="hover:shadow-xl hover:shadow-slate-200 w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300" value={height} onChange={e=>setHeight(e.target.value)} />
                 </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium">Expected Date of Delivery:</label>
+                  <input 
+                    value={expectedDate}
+                    type="date" 
+                    className="hover:shadow-xl hover:shadow-slate-200 w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 value={expectedDate}"
+                    onChange={e => setExpectedDate(e.target.value.split('T')[0])}
+                  />
+                  
+                </div>
+
 
                 <div>
                   <label className="block text-gray-700 font-medium">Allergies:</label>

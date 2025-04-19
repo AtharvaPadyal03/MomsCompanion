@@ -11,7 +11,9 @@ import {
     updateAccountDetailsTextBased,
     acceptAllergiesAndMedicalCondition,
     acceptPromptAndGenerateRecipies,
-    getClosestHospitals
+    getClosestHospitals,
+    updateExpectedDate,
+    getExpectedDate
 } from '../controller/user.controller.js'
 import {verifyJWT} from '../middleware/auth.middleware.js'
 
@@ -29,7 +31,9 @@ router.route('/getUser').get(verifyJWT,getUser)
 router.route('/updateUserAvatar').patch(verifyJWT,upload.single('avatar'),updateUserAvatar)
 router.route('/updateAccountDetailsTextBased').patch(verifyJWT,updateAccountDetailsTextBased)
 router.route('/acceptAllergiesAndMedicalCondition').patch(verifyJWT,acceptAllergiesAndMedicalCondition);
+router.route('/acceptExpectedDate').patch(verifyJWT,updateExpectedDate);
 router.route('/acceptPromptAndGenerateRecipies').post(verifyJWT,acceptPromptAndGenerateRecipies)
-router.route('/getClosestHospitals').post(getClosestHospitals)  
+router.route('/getClosestHospitals').post(getClosestHospitals)
+router.route('/getExpectedDate').get(verifyJWT,getExpectedDate)  
 
 export default router

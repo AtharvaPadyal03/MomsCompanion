@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema({
     allergies:{
         type:[String],
         default:[]
-    }
+    },
+    expectedDate:{
+        type:Date,
+        required:false
+    },
 },{timestamps:true})
 
 userSchema.pre('save',async function(next) {
@@ -77,4 +81,7 @@ userSchema.methods.generateRefreshToken = function() {
         }
     )
 }
+
+
+
 export const User = mongoose.model("User",userSchema)
