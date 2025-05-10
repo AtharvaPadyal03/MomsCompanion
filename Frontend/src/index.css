@@ -64,3 +64,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: "Comic Relief";
+  src: url("/fonts/ComicRelief-Bold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-relief-bold {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}

@@ -17,7 +17,6 @@ const UpdateProfile = () => {
   useEffect(()=>{
       axios.get('/user/getUser')
       .then((res)=>{
-        console.log(res)
         setAvatar(res.data.data.avatar)
         setAge(res.data.data.age)
         setWeight(res.data.data.weight)
@@ -36,7 +35,7 @@ const UpdateProfile = () => {
       axios.patch('/user/updateAccountDetailsTextBased',{age,weight,height})
       .then((res) => {
         console.log(res.data)
-        navigate('/')
+        navigate('/home')
       })
       .catch((err) => {
         console.log(err.response.data);

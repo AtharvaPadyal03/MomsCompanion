@@ -24,13 +24,14 @@ const Navbar = () => {
   return (
     <>
     <nav className="bg-colors-purple1 text-white flex items-center justify-between px-6 py-4 shadow-lg">
-      <div onClick={() => navigate("/")}>
+      <div onClick={() => navigate("/home")}>
         <img src="./logo.png" alt="image" className="max-w-10" />
       </div>
 
-      <h1 className="text-4xl font-bold text-white text-shadow-xl absolute left-1/2 transform -translate-x-1/2">
+      <h1 className="hidden sm:block text-4xl font-bold text-white text-shadow-xl absolute left-1/2 transform -translate-x-1/2">
         <span className="font-jaro">mom'sCompanion</span>
       </h1>
+
 
       <div className="flex items-center gap-4">
         {!accessToken ? (

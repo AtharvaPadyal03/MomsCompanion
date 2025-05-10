@@ -24,7 +24,7 @@ const Login = () => {
       .then((res) => {
         const token = res.data.data.accessToken;
         cookies.set("accessToken", token, { path: "/" });
-        navigate("/");
+        navigate("/home");
         setError(false);
         setIsClicked(true); // ✅ Only set green if login is successful
       })

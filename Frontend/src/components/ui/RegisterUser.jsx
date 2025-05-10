@@ -35,7 +35,7 @@ const RegisterUser = () => {
       .then((res) => {
         const token = res.data.data.accessToken;
         cookies.set("accessToken", token, { path: "/" });
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         console.log(err.response?.data || err.message);

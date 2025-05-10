@@ -4,7 +4,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Navbar from "./Navbar";
 
-
 const HospitalList = () => {
   const [address, setAddress] = useState("");
   const [hospitals, setHospitals] = useState([]);
@@ -56,7 +55,6 @@ const HospitalList = () => {
         attribution: "&copy; OpenStreetMap contributors",
       }).addTo(map);
 
-      // ✅ Remove the marker icon
       L.marker([hospital.latitude, hospital.longitude], { icon: L.divIcon({ className: "invisible" }) })
         .addTo(map)
         .bindPopup(`<b>${hospital.name}</b><br>${hospital.address}`)
@@ -65,65 +63,70 @@ const HospitalList = () => {
   };
 
   return (
-    
-    <div className=" min-h-screen bg-[url('/bg.avif')] bg-cover bg-center bg-no-repeat bg-slate-200 text-black ">
-      <Navbar/>
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="flex gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Enter your address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          onClick={fetchHospitals}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Find Hospitals
-        </button>
-      </div>
+    <div className="min-h-screen bg-[url('/bg.avif')] bg-cover bg-center bg-no-repeat bg-slate-200 text-black">
+      <Navbar />
 
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      {loading && <p className="text-gray-600">Loading hospitals...</p>}
+      <div className="max-w-6xl mx-auto p-4 sm:p-6">
+        {/* Address Input and Button */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <input
+            type="text"
+            placeholder="Enter your address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="w-full sm:flex-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={fetchHospitals}
+            className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            Find Hospitals
+          </button>
+        </div>
 
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Closest Hospitals</h2>
-        {hospitals.length === 0 ? (
-          <p className="text-gray-500">No hospitals found. Enter an address to search.</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hospitals.map((hospital, index) => (
-              <div key={index} className="border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition">
-                <img src={getRandomImage()} alt="Hospital" className="w-full h-40 object-cover" />
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {loading && <p className="text-gray-600">Loading hospitals...</p>}
 
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-blue-700">{hospital.name}</h3>
-                  <p className="text-gray-600"><strong>Address:</strong> {hospital.address}</p>
-                  <p className="text-gray-600"><strong>Rate:</strong> {hospital.rating || "N/A"}</p>
-                  
-                  <button
-                    onClick={() => renderMap(hospital)}
-                    className="mt-3 w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
-                  >
-                    View on Map
-                  </button>
+        {/* Hospital Cards */}
+        <div>
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">Closest Hospitals</h2>
+          {hospitals.length === 0 ? (
+            <p className="text-gray-500">No hospitals found. Enter an address to search.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {hospitals.map((hospital, index) => (
+                <div
+                  key={index}
+                  className="border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition"
+                >
+                  <img src={getRandomImage()} alt="Hospital" className="w-full h-40 object-cover" />
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-blue-700">{hospital.name}</h3>
+                    <p className="text-gray-600"><strong>Address:</strong> {hospital.address}</p>
+                    <p className="text-gray-600"><strong>Rate:</strong> {hospital.rating || "N/A"}</p>
+                    <button
+                      onClick={() => renderMap(hospital)}
+                      className="mt-3 w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+                    >
+                      View on Map
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Map */}
+        {selectedHospital && (
+          <div className="mt-8">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">
+              Location of {selectedHospital.name}
+            </h2>
+            <div id="map" className="w-full h-80 sm:h-96 border rounded-lg shadow-md"></div>
           </div>
         )}
       </div>
-
-      {selectedHospital && (
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">Location of {selectedHospital.name}</h2>
-          <div id="map" className="w-full h-96 border rounded-lg shadow-md"></div>
-        </div>
-      )}
-    </div>
-    
     </div>
   );
 };

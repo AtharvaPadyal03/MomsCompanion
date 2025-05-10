@@ -10,10 +10,13 @@ import Login from "../components/ui/Login"
 import RegisterUser from "../components/ui/RegisterUser"
 import UserProfile from "../components/ui/UserProfile"
 import UpdateProfile from "../components/ui/UpdateProfile"
+import LandingPage from "../components/ui/LandingPage"
 const AppRoutes = () => {
   return (
     <Routes>
-        <Route path='/' element = {<Home/>} />
+        <Route path='/' element = {<LandingPage/>} />
+        <Route path='/home' element = {<Home/>} />
+        <Route path="/landing" element={<LandingPage/>}/>
         <Route path='/sonography' element = {<MainFeature/>} />
         <Route path='/nearby-hospitals' element = {<MapComponent/>} />
         <Route path='/exercise' element = {<Exercise/>} />

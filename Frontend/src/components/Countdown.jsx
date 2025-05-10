@@ -55,13 +55,13 @@ const Countdown = () => {
   },[targetDate]);
 
   return (
-    <div className="p-4 bg-colors-customGreen2 shadow-lg text-center">
+    <div className="p-4 text-center">
       {(timeLeft.months === 0 && timeLeft.days === 0) ? (
         <div className="flex justify-center items-center">
           <img src={loadingImg} alt="Loading..." className="w-12 h-12 animate-spin" />
         </div>
       ) : (
-        <p className="text-lg text-colors-customGreen1">
+        <p className="text-2xl text-colors-customGreen1 comic-relief-bold">
           {timeLeft.months} months and {timeLeft.days} days remaining to hold your little miracle in your arms! 💖
         </p>
       )}
