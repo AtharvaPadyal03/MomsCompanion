@@ -1,3 +1,5 @@
+# Moms Companion
+
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -8,4 +10,26 @@
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![Google Maps](https://img.shields.io/badge/Google%20Maps-%234285F4.svg?style=for-the-badge&logo=google-maps&logoColor=white)
 
-![Screenshot (158)](https://github.com/GauravPatilGR/Projectplus-Spring-MVC-Java-Project/assets/123281827/76476527-7dbb-4aa6-bbec-ae5b121db566)
+![Screenshot (158)](https://github.com/AtharvaPadyal03/MomsCompanion/blob/main/Assets/LandingPage.PNG?raw=true)
+
+What is MomsCompanion?
+Moms Companion is a pregnancy support platform designed for expecting mothers, offering key features like a
+location-based hospital finder using the Geocoding API, personalized trimester-specific diet and exercise plans, a
+curated book library stored in MongoDB Atlas, sonography report analysis for fetal insights, and an AI-powered
+chatbot to instantly address common pregnancy-related doubts.
+
+## Technologies Used
+- Backend: Node.js, Express.js
+- Frontend: HTML, TailwindCSS, JavaScript
+- Database: MongoDB
+- Security: JSON WEB TOKEN
+- Version Control: Git
+
+## User Registration
+- Registration and Profile Management
+- User gets a clock to show estimate time of delivary
+- **Location-Based Hospital Finder:** Easily locate nearby hospitals using the integrated Geocoding API.
+- **Personalized Plans:** Receive trimester-specific diet and exercise recommendations tailored to individual needs.
+- **Book Library:** Access a curated collection of pregnancy-related books, managed with MongoDB Atlas.
+- **Sonography Report Analysis:** Upload and analyze sonography reports to gain insights into fetal development.
+- **AI-Powered Chatbot:** Get instant answers to common pregnancy questions and concerns.
