@@ -12,7 +12,7 @@ const HomePage = () => {
   const isLoggedIn = Boolean(accessToken);
 
   return (
-    <div className=" min-h-screen bg-[url('/bg.avif')] bg-cover bg-center bg-no-repeat bg-slate-200 text-white ">
+    <div className=" min-h-screen bg-[url('/bg.avif')] bg-cover bg-center bg-no-repeat text-white ">
       <Navbar />
       <div className="p-8 bg-transparent shadow-2xl rounded-lg mt-12 mx-auto w-11/12 md:w-2/3">
         {isLoggedIn ? (
