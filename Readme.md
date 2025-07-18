@@ -24,7 +24,7 @@ curated book library stored in MongoDB Atlas, sonography report analysis for fet
 - Security: JSON WEB TOKEN
 - Version Control: Git
 
-## User Registration
+## Functionalities
 - Registration and Profile Management
 - User gets a clock to show estimate time of delivary
 - **Location-Based Hospital Finder:** Easily locate nearby hospitals using the integrated Geocoding API.
