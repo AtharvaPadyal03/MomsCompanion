@@ -37,3 +37,6 @@ curated book library stored in MongoDB Atlas, sonography report analysis for fet
 ![Exercise Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/Exercise.PNG)
 ![User Profile Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/UserProfile.PNG)
 ![Books Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/Books.PNG)
+
+## Conclusion
+Moms Companion streamlines pregnancy support by combining essential resources and personalized features into a single platform. With tools for hospital location, tailored health plans, book recommendations, and report analysis, it empowers expecting mothers to make informed decisions and enhances their overall pregnancy experience.
