@@ -10,13 +10,12 @@
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![Google Maps](https://img.shields.io/badge/Google%20Maps-%234285F4.svg?style=for-the-badge&logo=google-maps&logoColor=white)
 
-![Screenshot (158)](https://github.com/AtharvaPadyal03/MomsCompanion/blob/main/Assets/LandingPage.PNG?raw=true)
+![Screenshot (1)](https://github.com/AtharvaPadyal03/MomsCompanion/blob/main/Assets/LandingPage.PNG?raw=true)
 
 What is MomsCompanion?
 Moms Companion is a pregnancy support platform designed for expecting mothers, offering key features like a
 location-based hospital finder using the Geocoding API, personalized trimester-specific diet and exercise plans, a
-curated book library stored in MongoDB Atlas, sonography report analysis for fetal insights, and an AI-powered
-chatbot to instantly address common pregnancy-related doubts.
+curated book library stored in MongoDB Atlas, sonography report analysis for fetal insights.
 
 ## Technologies Used
 - Backend: Node.js, Express.js
@@ -32,4 +31,9 @@ chatbot to instantly address common pregnancy-related doubts.
 - **Personalized Plans:** Receive trimester-specific diet and exercise recommendations tailored to individual needs.
 - **Book Library:** Access a curated collection of pregnancy-related books, managed with MongoDB Atlas.
 - **Sonography Report Analysis:** Upload and analyze sonography reports to gain insights into fetal development.
-- **AI-Powered Chatbot:** Get instant answers to common pregnancy questions and concerns.
+
+![Clock Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/Clock.PNG)
+![Diet Plan Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/DIet%20Plan.PNG)
+![Exercise Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/Exercise.PNG)
+![User Profile Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/UserProfile.PNG)
+![Books Screenshot](https://raw.githubusercontent.com/AtharvaPadyal03/MomsCompanion/main/Assets/Books.PNG)
